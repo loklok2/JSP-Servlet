@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>mission 1</title>
+</head>
+<body>
+
+<%
+String direction = request.getParameter("dir");
+if (direction != null && (direction.equals("hor") || direction.equals("ver"))) {
+    if (direction.equals("hor")) {
+        // 가로 출력
+        for (int i = 2; i <= 9; i++) {
+            %><p><%= i %>단</p><%
+            for (int j = 1; j <= 9; j++) {
+                %><span><%= i %> × <%= j %> = <%= i * j %></span>&nbsp;&nbsp;&nbsp;&nbsp;<%
+            }
+            %><br/><%
+        }
+    } else {
+        // 세로 출력
+        for (int i = 2; i <= 9; i++) {
+            %><p><%= i %>단</p><%
+            for (int j = 1; j <= 9; j++) {
+                %><span><%= i %> × <%= j %> = <%= i * j %></span><br/><%
+            }
+            %><br/><%
+        }
+    }
+} else {
+    %><p>값입력 확인</p><%
+}
+    %>
+</body>
+</html> 

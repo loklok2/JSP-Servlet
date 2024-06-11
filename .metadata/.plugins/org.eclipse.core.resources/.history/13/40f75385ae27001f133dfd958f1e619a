@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Multiplication Tables</title>
+</head>
+<body>
+<%
+String dir = "ver";
+try {
+    String param = request.getParameter("ver");
+    if (param != null && (param.equalsIgnoreCase("ver") || param.equalsIgnoreCase("hor"))) {
+        dir = param;
+    }
+} catch(Exception e) {}
+
+for (int i = 2; i <= 9; i++) {
+    out.print(String.format("<h2>%d단</h2>", i));
+    for (int j = 1; j <= 9; j++) {
+        out.print(i + " * " + j + " = " + (i * j));
+        if (dir.equalsIgnoreCase("ver")) {
+            out.print("<br />");
+        } else if (dir.equalsIgnoreCase("hor")) {
+            out.print("&nbsp;&nbsp;&nbsp;");
+        }
+    }
+    out.print("<br />");
+}
+%>
+</body>
+</html>

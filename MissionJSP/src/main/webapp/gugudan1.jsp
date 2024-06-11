@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mission 1</title>
+<title>구구단1</title>
 </head>
 <body>
 
