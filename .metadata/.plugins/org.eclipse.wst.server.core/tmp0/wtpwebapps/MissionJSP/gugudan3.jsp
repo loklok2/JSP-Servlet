@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mission 1</title>
+<title>mission 2</title>
  <style>
         .gugudan {
             display: inline-block;
@@ -28,32 +28,13 @@ if (colParam != null) {
  
     }
 }
-%>
-
-<table>
-<%
-for (int i = 2; i <= col + 1; i++) {
-%>
-    <tr>
-        <td class="gugudan"><%= i %>단</td>
-        <td>
-            <table>
-                <%
-                for (int j = 1; j <= 9; j++) {
-                %>
-                <tr>
-                    <td><%= i %> × <%= j %> = <%= (i * j) %></td>
-                </tr>
-                <%
-                }
-                %>
-            </table>
-        </td>
-    </tr>
-<%
+for (int i = col; i <= 9; i++) { //총루프가 3개다 전체가 출력 
+    out.print("<div class=\"gugudan\">" + i + "단 ");
+    for (int j = 1; j <= 9; j++) {
+        out.print("<span>" + i + " × " + j + " = " + (i * j) + "</span>");
+    }
+    out.print("</div>");
 }
 %>
-</table>
-
 </body>
-</html>
+</html> 

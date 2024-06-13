@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <h2>gugudan jsp출력하기</h2>
+    <form action="gugudanProc.jsp" method="post">
+    Type1<input type='number' name="gugudan" /> 단 <!-- value 속성 수정 -->
+    <br />
+    Type2
+      <input type='radio' name='printvalue' value='Horizontal' /> Horizontal
+      <input type='radio' name='printvalue' value='vertical' /> vertical
+      <br>
+    Type3<input type='number' name="gugudan" /> 열 <!-- value 속성 수정 -->
+    <br />
+    <input type="submit" value="선택"/>
+    </form>
+</body>
+</html>

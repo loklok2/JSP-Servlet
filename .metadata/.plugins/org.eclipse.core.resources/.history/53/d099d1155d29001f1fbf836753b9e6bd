@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>gugudan Form</title>
+</head>
+<body>
+    <h2>구구단 출력하기</h2>
+    <form action="gugudanProc2.jsp" method="post">
+        <label>Type 선택:</label>
+        <select name="sel">
+            Type 1<input type="number" value="type1"/>
+            <option value="type2">Type 2</option>
+            <option value="type3">Type 3</option>
+        </select>
+        <br>
+        <input type="submit" value="제출">
+    </form>
+</body>
+</html>
