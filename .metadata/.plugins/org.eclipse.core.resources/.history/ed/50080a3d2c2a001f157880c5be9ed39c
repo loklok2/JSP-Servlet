@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>유클리드 호제법</title>
+<%
+    int findGCD(int num1, int num2) {
+        while (num2 != 0) {
+            int temp = num2;
+            num2 = num1 % num2;
+            num1 = temp;
+        }
+        return num1;
+    }
+
+    int findLCM(int num1, int num2) {
+        return (num1 * num2) / findGCD(num1, num2);
+    }
+
+    String snum1 = request.getParameter("num1");
+    String snum2 = request.getParameter("num2");
+
+    int num1 = snum1 != null ? Integer.parseInt(snum1) : 0;
+    int num2 = snum2 != null ? Integer.parseInt(snum2) : 0;
+
+    int gcd = findGCD(num1, num2);
+    int lcm = findLCM(num1, num2);
+%>
+</head>
+<body>
+</body>
+</html>

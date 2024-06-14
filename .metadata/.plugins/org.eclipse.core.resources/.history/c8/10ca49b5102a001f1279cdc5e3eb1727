@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.Calendar, java.util.GregorianCalendar, java.text.SimpleDateFormat"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>2025년 대한민국 공휴일 달력</title>
+    <style>
+        /* 여기에 CSS 스타일을 추가하세요 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .holiday {
+            background-color: #ffcccc;
+        }
+    </style>
+</head>
+<body>
+    <h2>2025년 대한민국 공휴일 달력</h2>
+    <%
+        // 공휴일 정보를 설정합니다.
+        String[] holidayNames = {"신정", "설날 연휴 시작", "설날", "설날 연휴 끝", "삼일절", "어린이날", "부처님오신날", "현충일", "광복절", "추석 연휴 시작", "추석", "추석 연휴 끝", "개천절", "한글날", "크리스마스"};
+        String[] holidayDates = {"01-01", "02-18", "02-19", "02-20", "03-01", "05-05", "05-19", "06-06", "08-15", "09-07", "09-08", "09-09", "10-03", "10-09", "12-25"};
+        Calendar cal = new GregorianCalendar(2025, Calendar.JANUARY, 1);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        int daysInMonth, month, year, dayOfWeek, day;
+        String currentDate;
+
+        // 12개월에 대한 달력을 생성합니다.
+        for (int m = 0; m < 12; m++) {
+            cal.set(2025, m, 1);
+            daysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+            month = cal.get(Calendar.MONTH);
+            year = cal.get(Calendar.YEAR);
+            dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+            // 달력 헤더를 출력합니다.
+            out.println("<table>");
+            out.println("<tr><th colspan='7'>" + (month + 1) + "월</th></tr>");
+            out.println("<tr><td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td></tr>");
+
+            // 첫 주의 빈 칸을 채웁니다.
+            out.println("<tr>");
+            for (int i = 1; i < dayOfWeek; i++) {
+                out.println("<td></td>");
+            }
+
+            // 달력의 날짜를 출력합니다.
+            for (int i = 1; i <= daysInMonth; i++) {
+                cal.set(year, month, i);
+                currentDate = sdf.format(cal.getTime());
+                day = cal.get(Calendar.DAY_OF_WEEK);
+                // 주말이나 공휴일인 경우 클래스를 추가합니다.
+                boolean isHoliday = false;
+                for (int h = 0; h < holidayDates.length; h++) {
+                    if ((year + "-" + holidayDates[h]).equals(currentDate)) {
+                        isHoliday = true;
+                        break;
+                    }
+                }
+                if (day == Calendar.SUNDAY || isHoliday) {
+                    out.println("<td class='holiday'>" + i + "</td>");
+                } else {
+                    out.println("<td>" + i + "</td>");
+                }
+                // 주가 끝나면 새로운 행을 시작합니다.
+                if (day == Calendar.SATURDAY && i < daysInMonth) {
+                    out.println("</tr><tr>");
+                }
+            }
+
+            // 마지막 주의 빈 칸을 채웁니다.
+            for (int i = cal.get(Calendar.DAY_OF_WEEK); i < 7; i++) {
+                out.println("<td></td>");
+            }
+            out.println("</tr>");
+            out.println("</table><br>");
+        }
+    %>
+</body>
+</html>

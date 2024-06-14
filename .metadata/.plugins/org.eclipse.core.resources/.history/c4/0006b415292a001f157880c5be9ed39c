@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>유클리드 호제법</title>
+</head>
+<%
+
+
+%>
+<body>
+	<form> 
+       <tr>
+       	<td>숫자1:</td>>
+<%       if(snull == null){ %>
+			<td><input type="text" name="num1" placeholder="숫자를 입력하세요"/></td>
+<%		}else{ %>
+			<td><input type="text" name="num1" value="<%=sum1 %>"/></td>
+<% 		}		%>				
+       </tr>
+    
+    </form>
+</body>
+</html>
