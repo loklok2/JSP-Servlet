@@ -8,11 +8,4 @@
 	</buildSpec>
 	<natures>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>.link2</name>
-			<type>2</type>
-			<location>C:/K_7/k7_Jsp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/work/Catalina/localhost/MustHaveJSP/org/apache/jsp</location>
-		</link>
-	</linkedResources>
 </projectDescription>
