@@ -102,7 +102,7 @@ else {
         <tr align="center">
             <td><%= virtualNum %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="View.jsp?num=<%= dto.getNum() %>"><%= dto.getTitle() %></a>
+                <a href="View.jsp?num=<%= dto.getNum() %>&searchField=<%= searchField %>&searchWord=<%= searchWord %>"><%= dto.getTitle() %></a>
             </td>
             <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
             <td align="center"><%= dto.getVisitcount() %></td>  <!--조회수-->
@@ -122,8 +122,9 @@ else {
                        blockPage, pageNum, request.getRequestURI(),searchField, searchWord) %>  
             </td>
             <!--글쓰기 버튼-->
-            <td><button type="button" onclick="location.href='Write.jsp';">글쓰기
-                </button></td>
+            <td>
+            <button type="button" onclick="location.href='Write.jsp';">글쓰기</button>
+            </td>
         </tr>
     </table>
 </body>

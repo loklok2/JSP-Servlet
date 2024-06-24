@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-BoardDAO dao = new BoardDAO(application);
+BoardDAO dao = new BoardDAO(application);  // num title id postdate visitcount
 
 
 Map<String, Object> param = new HashMap<String, Object>(); 
@@ -89,11 +89,11 @@ background-color: lightgray;
     </form>
     <table border="1" width="90%">
         <tr>
-            <th width="10%">번호</th>
-            <th width="50%">제목</th>
-            <th width="15%">작성자</th>
-            <th width="10%">조회수</th>
-            <th width="15%">작성일</th>
+            <th width="10%">num</th>
+            <th width="50%">title</th>
+            <th width="15%">id</th>
+            <th width="10%">postdate</th>
+            <th width="15%">visitcount</th>
         </tr>
 <%
 if (boardLists.isEmpty()) {
@@ -119,8 +119,8 @@ else {
                 <a href="View.jsp?num=<%= dto.getNum() %>"><%= dto.getTitle() %></a> 
             </td>
             <td align="center"><%= dto.getId() %></td>          
-            <td align="center"><%= dto.getVisitcount() %></td>  
             <td align="center"><%= dto.getPostdate() %></td>    
+            <td align="center"><%= dto.getVisitcount() %></td>  
         </tr>
 <%
     }

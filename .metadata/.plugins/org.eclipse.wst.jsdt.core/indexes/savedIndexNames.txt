@@ -1,19 +1,9 @@
-<<<<<<< HEAD
 INDEX VERSION 1.4+C:\K_7\k7_Jsp\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-480417195.index
-1561613216.index
-359166062.index
 3944037440.index
 3891923302.index
-676205429.index
 1566696902.index
-=======
-INDEX VERSION 1.4+C:\Users\loklok2\Desktop\새 폴더 (2)\K7_JSP-Servlet\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3621834299.index
-3891923302.index
-1299266429.index
-3922424648.index
+480417195.index
+1561613216.index
+206989232.index
+676205429.index
 359166062.index
-3186890735.index
-2660391978.index
->>>>>>> 2c0036721e5bafaec3df605fa08d26c8a8382ce0
