@@ -1,0 +1,8 @@
+package servlet;
+
+import java.io.IOException;
+
+
+public class HelloServlet extend HttpServelt{
+
+}

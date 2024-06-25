@@ -1,0 +1,14 @@
+package servlet;
+
+import jakarta.servlet.http.HttpServlet;
+
+
+import membership.MemberDAO;
+import membership.MemberDTO;
+
+
+public class MemberAuth extends HttpServlet{
+	private static final long serialVersionUID = 1L;
+	MemberDao dao;
+
+}
