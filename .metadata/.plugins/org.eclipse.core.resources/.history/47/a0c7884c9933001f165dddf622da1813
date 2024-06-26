@@ -1,0 +1,13 @@
+package model2.mvcboard;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import common.JDBConnect;
+
+public class MVCBoardDAO extends JDBConnect {
+	private PreparedStatement psmt;
+    private Statement stmt;
+    private ResultSet rs;
+}

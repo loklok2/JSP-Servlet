@@ -6,14 +6,16 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="timeStyle"/>
+		<item key="selection" value="jakarta"/>
 		<list key="findhistory">
+			<item value="javax"/>
 			<item value="timStyle"/>
 			<item value="timstyle"/>
 			<item value="datestyle"/>
 			<item value="get"/>
 		</list>
 		<list key="replacehistory">
+			<item value="jakarta"/>
 			<item value="timeStyle"/>
 			<item value="timStyle"/>
 			<item value="dateStyle"/>

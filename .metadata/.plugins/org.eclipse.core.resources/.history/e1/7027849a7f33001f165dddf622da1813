@@ -1,0 +1,9 @@
+package fileupload;
+
+
+public class MyFileDAO extends JDBConnect {
+	public int insertFile(MyFileDTO dto) {
+		
+	}
+
+}

@@ -1,0 +1,17 @@
+package fileupload;
+
+import java.sql.PreparedStatement;
+
+import common.JDBConnect;
+
+public class MyFileDAO extends JDBConnect {
+	public int insertFile(MyFileDTO dto) {
+		PreparedStatement psmt = null;
+		int applyResult = 0;
+		try {
+			String query = "INSERT INTO myfile (title,cate, ofile, sfile)"
+						 + "VALUES(?,?,?,?)";
+		}
+	}
+
+}

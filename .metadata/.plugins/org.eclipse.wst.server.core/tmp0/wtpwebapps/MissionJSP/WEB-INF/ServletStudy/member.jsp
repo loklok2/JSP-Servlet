@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Member List</title>
+</head>
+<body>
+<h2>Members</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Password</th>
+        <th>Name</th>
+        <th>Registration Date</th>
+    </tr>
+    <c:forEach var="member" items="${list}">
+        <tr>
+            <td>${member.id}</td>
+            <td>${member.pass}</td>
+            <td>${member.name}</td>
+            <td>${member.regidate}</td>
+        </tr>
+    </c:forEach>
+</table>
+</body>
+</html>
