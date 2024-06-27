@@ -1,0 +1,21 @@
+package model2.mvcboard;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Part;
+
+public class WriteController extends HttpServlet {
+	//요청 객체 내에 전송되어온 파일을 디스크에 저장하고 파일명을 리턴
+	public static String uploadFile(HttpServletRequest req, String sDirectory)throws ServletException, IOException{
+		
+	}
+		
+}

@@ -1,0 +1,8 @@
+package model2.mvcboard;
+
+public class Snippet {
+	public static void main(String[] args) {
+		dto.getName()
+	}
+}
+

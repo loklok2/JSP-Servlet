@@ -11,14 +11,15 @@ public class MVCBoardDTO {
 	private int downcount;
 	private String pass;
 	private int visitcount;
-	public String getIdx() {
-		return idx;
-	}
+	
 	@Override
 	public String toString() {
 		return "MVCBoardDTO [idx=" + idx + ", name=" + name + ", title=" + title + ", content=" + content
 				+ ", postdate=" + postdate + ", ofile=" + ofile + ", sfile=" + sfile + ", downcount=" + downcount
 				+ ", pass=" + pass + ", visitcount=" + visitcount + "]";
+	}
+	public String getIdx() {
+		return idx;
 	}
 	public void setIdx(String idx) {
 		this.idx = idx;
