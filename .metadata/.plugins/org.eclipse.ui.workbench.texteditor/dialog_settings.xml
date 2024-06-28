@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="board"/>
+		<item key="selection" value="req"/>
 		<list key="findhistory">
+			<item value="mr"/>
 			<item value="board"/>
 			<item value="javax"/>
 			<item value="timStyle"/>
@@ -16,6 +17,7 @@
 			<item value="get"/>
 		</list>
 		<list key="replacehistory">
+			<item value="req"/>
 			<item value="jakarta"/>
 			<item value="timeStyle"/>
 			<item value="timStyle"/>
@@ -23,7 +25,7 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1321"/>
+		<item key="DIALOG_X_ORIGIN" value="976"/>
 		<item key="DIALOG_Y_ORIGIN" value="221"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>

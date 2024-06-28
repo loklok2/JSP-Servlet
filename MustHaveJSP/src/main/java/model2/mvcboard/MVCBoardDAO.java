@@ -22,72 +22,61 @@ public class MVCBoardDAO extends JDBConnect {
 	}
 	
 	public int selectCount(Map<String, Object> map) {
-	    int totalCount = 0;
-	    String query = "SELECT COUNT(*) FROM mvcboard";
-	    
-	    if(map.get("searchWord") != null && !((String)map.get("searchWord")).trim().isEmpty()) {
-	        query += " WHERE " + map.get("searchField") + " LIKE ?";
-	    }
-	    
-	    try (PreparedStatement psmt = getCon().prepareStatement(query)) {
-	        if(map.get("searchWord") != null && !((String)map.get("searchWord")).trim().isEmpty()) {
-	            psmt.setString(1, "%" + map.get("searchWord") + "%");
-	        }
-	        
-	        try (ResultSet rs = psmt.executeQuery()) {
-	            if(rs.next()) {
-	                totalCount = rs.getInt(1);
-	            }
-	        }
-	        System.out.println("실행된 쿼리: " + query);
-	        System.out.println("검색 결과 수: " + totalCount);
-	    } catch (Exception e) {
-	        System.out.println("게시물 카운트 중 예외 발생");
-	        e.printStackTrace();
-	    }
-	    return totalCount;
+		int totalCount = 0; // 결과(게시물 수)를 담을 변수
+
+		// 게시물 수를 얻어오는 쿼리문 작성
+		String query = "SELECT COUNT(*) FROM mvcboard";
+		if (map.get("searchWord") != null) {
+			query += " WHERE " + map.get("searchField") + " "
+					+ " LIKE '%" + map.get("searchWord") + "%'";
+		}
+
+		try {
+			stmt = getCon().createStatement();   // 쿼리문 생성
+			rs = stmt.executeQuery(query);  // 쿼리 실행
+			rs.next();  // 커서를 첫 번째 행으로 이동
+			totalCount = rs.getInt(1);  // 첫 번째 칼럼 값을 가져옴
+		}
+		catch (Exception e) {
+			System.out.println("게시물 수를 구하는 중 예외 발생");
+			e.printStackTrace();
+		}
+
+		return totalCount; 
 	}
 
 	public List<MVCBoardDTO> selectListPage(Map<String, Object> map) {
-	    List<MVCBoardDTO> board = new Vector<MVCBoardDTO>();
-	    String query = "SELECT * FROM mvcboard";
-	    
-	    if (map.get("searchWord") != null && !((String)map.get("searchWord")).trim().isEmpty()) {
-	        query += " WHERE " + map.get("searchField") + " LIKE ?";
-	    }
-	    query += " ORDER BY idx DESC LIMIT ?, ?";
+		List<MVCBoardDTO> board = new Vector<MVCBoardDTO>();
+		String query = "SELECT * FROM mvcboard"; 
+		if (map.get("searchWord") != null) {
+			query += " WHERE " + map.get("searchField")
+			+ " LIKE '%" + map.get("searchWord") + "%' ";
+		}
+		query += " ORDER BY idx DESC"; 
 
-	    try (PreparedStatement psmt = getCon().prepareStatement(query)) {
-	        int parameterIndex = 1;
-	        if (map.get("searchWord") != null && !((String)map.get("searchWord")).trim().isEmpty()) {
-	            psmt.setString(parameterIndex++, "%" + map.get("searchWord") + "%");
-	        }
-	        psmt.setInt(parameterIndex++, (int) map.get("start"));
-	        psmt.setInt(parameterIndex, (int) map.get("pageSize"));
+		try {
+			stmt = getCon().createStatement();   // 쿼리문 생성
+			rs = stmt.executeQuery(query);  // 쿼리 실행
+			while (rs.next()) {
+				MVCBoardDTO dto = new MVCBoardDTO();
+				dto.setIdx(rs.getString("idx"));
+				dto.setName(rs.getString("name"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setSfile(rs.getString("sfile"));
+				dto.setDowncount(rs.getInt("downcount"));
+				dto.setPass(rs.getString("pass"));
+				dto.setVisitcount(rs.getInt("visitcount"));
+				board.add(dto);
+			}
 
-	        try (ResultSet rs = psmt.executeQuery()) {
-	            while (rs.next()) {
-	                MVCBoardDTO dto = new MVCBoardDTO();
-	                dto.setIdx(rs.getString("idx"));
-	                dto.setName(rs.getString("name"));
-	                dto.setTitle(rs.getString("title"));
-	                dto.setContent(rs.getString("content"));
-	                dto.setPostdate(rs.getDate("postdate"));
-	                dto.setOfile(rs.getString("ofile"));
-	                dto.setSfile(rs.getString("sfile"));
-	                dto.setDowncount(rs.getInt("downcount"));
-	                dto.setPass(rs.getString("pass"));
-	                dto.setVisitcount(rs.getInt("visitcount"));
-	                board.add(dto);
-	            }
-	        }
-	        System.out.println("실행된 쿼리: " + query);
-	        System.out.println("검색 결과 수: " + board.size());
-	    } catch (Exception e) {
-	        System.out.println("게시물 조회 중 예외 발생");
-	        e.printStackTrace();
-	    }
-	    return board;
+		} catch (Exception e) {
+			System.out.println("게시물 조회 중 예외 발생");
+			e.printStackTrace();
+		}
+		return board;
 	}
 	
 	
@@ -177,6 +166,76 @@ public class MVCBoardDAO extends JDBConnect {
 		}
 		catch (Exception e) {}
 	}
+
+	public boolean confirmPassword(String pass, String idx) {
+		boolean isCorr = true;
+		try {
+			String sql = "SELECT COUNT(*) FROM mvcboard WHERE pass=? AND IDX=?";
+			psmt = getCon().prepareStatement(sql);
+			psmt.setString(1, pass);
+			psmt.setString(2, idx);
+			rs = psmt.executeQuery();
+			rs.next();
+			if (rs.getInt(1) == 0) {
+				isCorr = false;
+			}
+		}
+		catch(Exception e) {
+			isCorr = false;
+			e.printStackTrace();
+		}
+		return isCorr;
+	}
 	
+	public int deletePost(String idx) { 
+        int result = 0;
+
+        try {
+            // 쿼리문 템플릿
+            String query = "DELETE FROM mvcboard WHERE idx=?"; 
+
+            // 쿼리문 완성
+            psmt = getCon().prepareStatement(query); 
+            psmt.setString(1, idx); 
+
+            // 쿼리문 실행
+            result = psmt.executeUpdate(); 
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result; // 결과 반환
+    }
 	
+	public int updatePost(MVCBoardDTO dto) { 
+        int result = 0;
+        
+        try {
+            // 쿼리문 템플릿 
+            String query = "UPDATE mvcboard SET "
+                         + " title=?, name=?, content=?, ofile=?, sfile=? "
+                         + " WHERE idx=? and pass=?";
+            
+            // 쿼리문 완성
+            psmt = getCon().prepareStatement(query);
+            psmt.setString(1, dto.getTitle());
+            psmt.setString(2, dto.getName());
+			psmt.setString(3, dto.getContent());
+			psmt.setString(4, dto.getOfile());
+			psmt.setString(5, dto.getSfile());
+			psmt.setString(6, dto.getIdx());
+			psmt.setString(7, dto.getPass());
+            
+            // 쿼리문 실행 
+            result = psmt.executeUpdate();
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 수정 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result; // 결과 반환 
+    }
 }

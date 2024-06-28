@@ -211,7 +211,7 @@ public class BoardDAO extends JDBConnect {
         
         try {
             // 쿼리문 템플릿 
-            String query = "UPDATE board SET "
+            String query = "UPDATE mvcboard SET "
                          + " title=?, content=? "
                          + " WHERE num=?";
             
