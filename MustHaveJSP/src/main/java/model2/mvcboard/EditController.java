@@ -1,15 +1,14 @@
 package model2.mvcboard;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 
 
 import jakarta.servlet.annotation.MultipartConfig;
+
+import java.io.IOException;
+
 import fileupload.fileUtil;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -32,7 +31,7 @@ public class EditController extends HttpServlet {
 		MVCBoardDAO dao = new MVCBoardDAO();
 		MVCBoardDTO dto = dao.selectView(idx);
 		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("/14MVCBoard/Edit.jsp").forward(req, resp);
+		req.getRequestDispatcher(getServletContext().getInitParameter("VIEWPATH")+"/14MVCBoard/Edit.jsp").forward(req, resp);
 	}
 	
 	

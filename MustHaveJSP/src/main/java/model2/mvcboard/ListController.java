@@ -44,7 +44,7 @@ public class ListController extends HttpServlet{
 			//요청받은 페이지로 수정
 			pageNum = Integer.parseInt(pageTemp);
 		
-		int start = (pageNum -1) * pageSize + 1;
+		int start = (pageNum -1) * pageSize;
 		map.put("start", start);
 		map.put("pageSize", pageSize);
 		
@@ -62,7 +62,7 @@ public class ListController extends HttpServlet{
 		
 		req.setAttribute("boardLists", boardLists);
 		req.setAttribute("map", map);
-		req.getRequestDispatcher("/14MVCBoard/List.jsp").forward(req, resp);
-		
+		//req.getRequestDispatcher("/14MVCBoard/List.jsp").forward(req, resp);
+		req.getRequestDispatcher(getServletContext().getInitParameter("VIEWPATH")+"/14MVCBoard/List.jsp").forward(req, resp);
 	}
 }

@@ -49,14 +49,19 @@ public class MVCBoardDAO extends JDBConnect {
 		List<MVCBoardDTO> board = new Vector<MVCBoardDTO>();
 		String query = "SELECT * FROM mvcboard"; 
 		if (map.get("searchWord") != null) {
-			query += " WHERE " + map.get("searchField")
-			+ " LIKE '%" + map.get("searchWord") + "%' ";
-		}
-		query += " ORDER BY idx DESC"; 
+            query += " WHERE " + map.get("searchField")
+                   + " LIKE '%" + map.get("searchWord") + "%' ";
+        }
+		query += " ORDER BY idx DESC limit ?,? ";
 
 		try {
-			stmt = getCon().createStatement();   // 쿼리문 생성
-			rs = stmt.executeQuery(query);  // 쿼리 실행
+            // 쿼리문 완성 
+            psmt = getCon().prepareStatement(query);
+            psmt.setInt(1, (int) map.get("start"));
+            psmt.setInt(2, (int) map.get("pageSize"));
+            
+            // 쿼리문 실행 
+            rs = psmt.executeQuery();
 			while (rs.next()) {
 				MVCBoardDTO dto = new MVCBoardDTO();
 				dto.setIdx(rs.getString("idx"));

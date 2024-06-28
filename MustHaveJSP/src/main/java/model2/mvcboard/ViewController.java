@@ -39,7 +39,7 @@ public class ViewController extends HttpServlet{
 		
 		req.setAttribute("dto", dto);
 		req.setAttribute("isImage", isImage);
-		req.getRequestDispatcher("/14MVCBoard/View.jsp").forward(req, resp);
+		req.getRequestDispatcher(getServletContext().getInitParameter("VIEWPATH")+"/14MVCBoard/View.jsp").forward(req, resp);
 	}
 
 }
