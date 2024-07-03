@@ -1,9 +1,0 @@
-public class BoardDTO {
-    private int num;
-    private String title;
-    private String content;
-    private String id;
-    private Date postdate;
-
-    // getters and setters
-}

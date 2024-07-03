@@ -1,7 +1,0 @@
-package servlet;
-
-
-@WebServlet("/12Servlet/LifeCycle.do")
-public class LifeCycle {
-
-}

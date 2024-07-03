@@ -1,6 +1,0 @@
-package servlet;
-
-@WebServlet("/12Servlet/AnnoMapping.do")
-public class AnnoMapping {
-
-}
